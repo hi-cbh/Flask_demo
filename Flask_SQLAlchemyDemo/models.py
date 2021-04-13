@@ -1,4 +1,4 @@
-from exts import db
+from .exts import db
 
 """
 以下表关系：

@@ -1,6 +1,6 @@
 from flask import Flask
-import configs
-from exts import db
+from .configs import configs
+from.exts import db
 
 app = Flask(__name__)
 # 加载配置文件

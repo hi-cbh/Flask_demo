@@ -1,8 +1,8 @@
 from flask_script import Manager, Server
-from app import app
+from .app import app
 from flask_migrate import Migrate, MigrateCommand
-from exts import db
-from models import * # 模型文件必须导入进来，否则运行报错
+from .exts import db
+from .models import * # 模型文件必须导入进来，否则运行报错
 
 manager = Manager(app)
 Migrate(app=app, db=db)

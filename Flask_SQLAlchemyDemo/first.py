@@ -1,5 +1,5 @@
-from app import db
-from models import *
+from .app import db
+from .models import *
 # 原生sql语句操作
 sql = 'select * from user'
 result = db.session.execute(sql)

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form action = "/" method = "POST">
+        <p>name: {{ form.name }}</p>
+        <p>body: {{ form.body }}</p>
+        <p>{{ form.submit }}</p>
+    </form>
+</div>
+<div class="list-group">
+    <table border = 1>
+    {% for message in messages %}
+        <tr>
+            <td>{{ message.name }}</td>
+            <td>{{ message.timestamp}}</td>
+            <td>{{ message.body }}</td>
+        </tr>
+    {% endfor %}
+</div>
+</body>
+</html>
