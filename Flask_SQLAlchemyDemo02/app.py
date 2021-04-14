@@ -2,7 +2,8 @@
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
-
+from flask_bootstrap import Bootstrap
+from flask_moment import Moment
 pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
@@ -13,7 +14,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "123456"
 # 创建数据库的操作对象
 db = SQLAlchemy(app)
-
+bootstrap = Bootstrap(app)
+moment = Moment(app)
 
 from datetime import datetime
 
@@ -23,13 +25,6 @@ class Message(db.Model):
     name = db.Column(db.String(20))
     body = db.Column(db.String(200))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
-
-    def __init__(self,name, body, timestamp):
-        self.id = id
-        self.name = name
-        self.body =body
-        self.timestamp = timestamp
-
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField
@@ -43,13 +38,11 @@ class HelloForm(FlaskForm):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def hello_world():
+def index():
     form = HelloForm()
     if form.validate_on_submit():
         name = form.name.data
         body = form.body.data
-        print(name)
-        print(body)
         message = Message(body=body, name=name)
         db.session.add(message)
         db.session.commit()
