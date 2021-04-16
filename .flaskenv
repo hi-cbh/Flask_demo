@@ -1,0 +1,2 @@
+FLASK_APP=Flask_SQLAlchemyDemo02
+FLASK_ENV=development
